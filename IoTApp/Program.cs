@@ -13,15 +13,17 @@ namespace IoTApp
     class Program
     {
         private static readonly HttpClient client = new HttpClient();
-        
+
         static async Task Main(string[] args)
         {
-            await RunAsync();
+            RunAsync();
             while (true)
             {
+                Console.WriteLine("ATTEMPT TO READ");
+                Thread.Sleep(1000);
                 Get();
-
-            }        }
+            }
+        }
 
         private static ConcurrentBag<Item> GetItems()
         {
@@ -48,10 +50,12 @@ namespace IoTApp
                 // read
                 Console.WriteLine("List of items:");
                 ConcurrentBag<Item> items = GetItems();
-                foreach (var item in items)
-                {
-                    Console.WriteLine(item.ToString());
-                }
+                //foreach (var item in items)
+                //{
+                //    Console.WriteLine(item.ToString());
+                //}
+
+                Console.WriteLine(items.Count());
             }
 
             catch (Exception)
@@ -72,8 +76,8 @@ namespace IoTApp
             {
                 for (int i = 0; i < 5000; i++)
                 {
-                    Item item = new Item(i, $"{i} element", i*i);
-                    var url = await CreateItemAsync(item); 
+                    Item item = new Item(i, $"{i} element", i * i);
+                    var url = await CreateItemAsync(item);
                 }
             }
             catch (Exception ex)
