@@ -11,5 +11,7 @@ namespace RequestHandlerAPI
         void Add(Item item);
 
         ConcurrentBag<Item> Get();
+
+        void TaskRun();
     }
 }

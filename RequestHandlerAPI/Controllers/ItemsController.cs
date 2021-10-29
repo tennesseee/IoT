@@ -20,6 +20,8 @@ namespace RequestHandlerAPI.Controllers
         public ItemsController(IData data)
         {
             _data = data;
+            _data.TaskRun();
+
         }
 
         [HttpPost]
@@ -27,6 +29,7 @@ namespace RequestHandlerAPI.Controllers
         public void Post(Item item)
         {
             _data.Add(item);
+            
         }
 
         [HttpGet]
